@@ -1,0 +1,36 @@
+{
+    "name": "mishape",
+    "version": "0.1.0",
+    "repository": "kevinfiol/mishape",
+    "author": "kevinfiol",
+    "license": "MIT",
+    "description": "A tiny object validator.",
+    "type": "module",
+    "main": "dist/mishape.cjs",
+    "module": "dist/mishape.js",
+    "unpkg": "dist/mishape.min.js",
+    "types": "index.d.ts",
+    "umd:name": "mishape",
+    "scripts": {
+        "test": "node test.js",
+        "build": "bundt index.js && node test.js"
+    },
+    "engines": {
+        "node": ">=12.x"
+    },
+    "files": [
+        "*.d.ts",
+        "dist"
+    ],
+    "keywords": [
+        "vanillajs",
+        "types",
+        "validator",
+        "typechecker",
+        "validation",
+        "object"
+    ],
+    "devDependencies": {
+        "bundt": "^1.1.5"
+    }
+}

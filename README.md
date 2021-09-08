@@ -7,7 +7,7 @@ import mishape from 'mishape';
 
 const validate = mishape({
   title: 'string',
-  year: 'number',
+  year: 'string|number',
   data: {
     available: 'boolean',
     dateRange: (x, is) => is.array(x) && x.length == 2 && x[0] < x[1]

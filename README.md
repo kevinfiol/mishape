@@ -63,7 +63,7 @@ validate({ name: 'James', age: 28, items: ['lots', 'of', 'books'] });
 
 1. An `object`, which is treated as a sub-`Schema` and will be validated recursively.
 
-2. A `string` denoting a type, e.g., `string`, `number`, `boolean` etc. By default, `mishape` includes built-in typecheckers for primitive types, including:
+2. A `string` denoting a type or union type, e.g., `string`, `number`, `boolean|defined`, `string|number` etc. By default, `mishape` includes built-in typecheckers for primitive types, including:
 
 * `number`
 * `array`

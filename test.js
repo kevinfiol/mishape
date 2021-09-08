@@ -270,6 +270,23 @@ test('Test custom type map', () => {
     equal(res.errors.length, 2);
 });
 
+test('Union types', () => {
+    const validate = mishape({
+        foo: 'string|number',
+        bar: 'boolean|function'
+    });
+
+    res = validate({ foo: 2, bar: false });
+    equal(res.ok, true);
+
+    res = validate({ foo: 'string', bar: () => 0 });
+    equal(res.ok, true);
+
+    res = validate({ foo: [], bar: 'not a boolean|function' });
+    equal(res.ok, false);
+    equal(res.errors.length, 2);
+});
+
 console.log(`Tests Passed ✓: ${passes}`);
 console.warn(`Tests Failed ✗: ${failures}`);
 

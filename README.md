@@ -15,7 +15,15 @@ const validate = mishape({
   }
 });
 
-validate({ title: 'Dubliners', year: 1914, data: { available: true, dateRange: [1900, 1800] } })
+validate({
+  title: 'Dubliners',
+  year: 1914,
+  data: {
+    available: true,
+    dateRange: [1900, 1800]
+  }
+});
+
 // { ok: false, errors: [TypeError: Expected dateRange, got: 1900,1800 at data.dateRange] }
 ```
 
@@ -66,46 +74,46 @@ validate({ name: 'James', age: 28, items: ['lots', 'of', 'books'] });
 
 2. A `string` denoting a type or union type, e.g., `string`, `number`, `boolean|defined`, `string|number` etc. By default, `mishape` includes built-in typecheckers for primitive types, including:
 
-  * `number`
-  * `array`
-  * `boolean`
-  * `object`
-  * `string`
-  * `function`
-  * `defined`
+    * `number`
+    * `array`
+    * `boolean`
+    * `object`
+    * `string`
+    * `function`
+    * `defined`
 
-  *(Note: `[]` will pass the built-in `object` check)*.
+    *(Note: `[]` will pass the built-in `object` check)*.
 
-  The built-in type-map can be extended by passing a custom map as a second argument to `mishape`:
+    The built-in type-map can be extended by passing a custom map as a second argument to `mishape`:
 
-  ```js
-  const validate = mishape({ data: 'object' }, {
-    object: x => typeof x == 'object' && x != null && !Array.isArray(x)
-  });
+    ```js
+    const validate = mishape({ data: 'object' }, {
+      object: x => typeof x == 'object' && x != null && !Array.isArray(x)
+    });
 
-  validate({ data: [1, 2, 3] });
-  // { ok: false, errors: [TypeError: Expected object, got: 1,2,3 at data] }
-  ```
+    validate({ data: [1, 2, 3] });
+    // { ok: false, errors: [TypeError: Expected object, got: 1,2,3 at data] }
+    ```
 
-  All custom typecheckers are provided the built-in typecheckers as a second argument, `is`, so the above can also be written as:
+    All custom typecheckers are provided the built-in typecheckers as a second argument, `is`, so the above can also be written as:
 
-  ```js
-  const validate = mishape({ data: 'object' }, {
-    object: (x, is) => is.object(x) && !is.array(x)
-  });
-  ```
+    ```js
+    const validate = mishape({ data: 'object' }, {
+      object: (x, is) => is.object(x) && !is.array(x)
+    });
+    ```
 
 3. A `PropertyValidator` function, which allows for more complex property validation. PropertyValidators are passed the value to be validated (`x`), as well as all typecheckers (`is`):
 
-  ```js
-  const validate = mishape({
-    name: 'string',
-    age: (x, is) => is.number(x) && x >= 21
-  });
+    ```js
+    const validate = mishape({
+      name: 'string',
+      age: (x, is) => is.number(x) && x >= 21
+    });
 
-  validate({ name: 'Doug', age: 20 });
-  // { ok: false, errors: [TypeError: Expected age, got: 20 at age] }
-  ```
+    validate({ name: 'Doug', age: 20 });
+    // { ok: false, errors: [TypeError: Expected age, got: 20 at age] }
+    ```
 
 ## Credits
 

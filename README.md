@@ -90,7 +90,7 @@ All custom typecheckers are provided the built-in typecheckers as a second argum
 const validate = mishape({ data: 'object' }, { object: (x, is) => is.object(x) && !is.array(x) });
 ```
 
-3. A `PropertyValidator` function, which allows for more complex property validation. `PropertyValidator`s are passed the value to be validated (`x`), as well as all typecheckers (`is`):
+3. A `PropertyValidator` function, which allows for more complex property validation. PropertyValidators are passed the value to be validated (`x`), as well as all typecheckers (`is`):
 
 ```js
 const validate = mishape({

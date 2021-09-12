@@ -28,4 +28,5 @@ function validate(schema, obj, res, map, chain) {
 function addError(res, type, x, id) {
     if (res.ok) res.ok = false;
     res.errors.push(TypeError(`Expected ${type}, got: ${x}${id ? ' at '+id : ''}`));
+    return res;
 }
